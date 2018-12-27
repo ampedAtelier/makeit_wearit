@@ -10,10 +10,12 @@
  #include <Adafruit_NeoPixel.h>
 
 // The pin that JST-SM connector is connected to
-#define NEOPIXEL_PIN 5
+#define NEOPIXEL_PIN 6
 
 // The number of NeoPixels on the strand
-#define NUM_PIXELS 17
+//#define NUM_PIXELS 10 // Purple Skirt
+#define NUM_PIXELS 7 // Silver Skirt
+
 
 // Parameter 1 = number of pixels in strip
 // Parameter 2 = Arduino pin number (most are valid)
@@ -24,11 +26,10 @@
 //   NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_PIXELS, NEOPIXEL_PIN, NEO_GRB + NEO_KHZ800);
 
-
 void setup() {
   // put your setup code here, to run once:
   strip.begin();
-  strip.setBrightness(100); //adjust brightness here
+  strip.setBrightness(255); //adjust brightness here
   strip.show(); // Initialize all pixels to 'off'
 }
 
@@ -63,4 +64,3 @@ uint32_t Wheel(byte WheelPos) {
    return strip.Color(0, WheelPos * 3, 255 - WheelPos * 3);
   }
 }
-

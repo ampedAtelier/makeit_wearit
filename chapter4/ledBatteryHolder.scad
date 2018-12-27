@@ -9,8 +9,15 @@
  * Build Plate Adhession: Brim
  */
  
- // module for circumscribed holes
- module cylinder_outer(height,radius,fn){
+// Parametric Variables
+// values are in mm that will be the default unit for printing
+// LED width = 6mm, bundle width = 5.75 mm
+innerDiameter = 3.25;
+// LED = 8.2 mm tall, fiber optic bundle = 12.5
+tubeLength = 21;
+ 
+// module for circumscribed holes
+module cylinder_outer(height,radius,fn) {
    fudge = 1/cos(180/fn);
    cylinder(h=height,r=radius*fudge,$fn=fn);
 }
@@ -46,7 +53,7 @@ difference() {
         // LED tube
         translate([0, 0, 10])
         // LED = 8.2 mm tall, fiber optic bundle = 12.5
-        cylinder(21, 5, 5, false);
+        cylinder(tubeLength, 5, 5, false);
         translate([0, 0, -2])
         cylinder(12, 3.7, 5, false);
     }
@@ -62,7 +69,7 @@ difference() {
     translate([0, 0, 9])
     // LED width = 6mm, bundle width = 5.75 mm
     //#cylinder(23, 3, 3, false, $fn=20);
-    #cylinder_outer(23, 3.5, 20);
+    cylinder_outer(23, innerDiameter, 20);
     // LED leads negative space: 0.5mm diameter
     translate([1.65, 0, -4])
     cylinder(14, .5, .5, false, $fn=20);
@@ -74,3 +81,4 @@ difference() {
     translate([3, -8, -1.8])
     cube([1,2.5,6.2]);
 }
+

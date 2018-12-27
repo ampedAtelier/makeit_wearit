@@ -1,7 +1,9 @@
 /**
  * LiPo Battery Cases
  * TODO:
+ * [ ] add book description
  * [ ] add minimal size conditionals for bottom slot and grasp cutout
+ *      [ ] slot should also have a max thickness
  * [ ] add customizer: 
  *      Lesson 4: https://www.thingiverse.com/thing:1201466
  * [ ] add sewing tabs: 
@@ -11,9 +13,9 @@
 
 // Parametric Variables
 // values are in mm that will be the default unit for printing
-pBatteryLength = 25;
-pBatteryWidth = 21;
-pBatteryThickness = 5;
+pBatteryLength = 61;
+pBatteryWidth = 38;
+pBatteryThickness = 9;
 pCaseThickness = 1.6;
 
 //Rounded Rectangle Module
@@ -61,13 +63,13 @@ union() {
         round_rectangle(pCaseThickness*3,
             pBatteryWidth-pCaseThickness-pCaseThickness,
             pBatteryThickness-pCaseThickness-pCaseThickness);
-        /* finger graps cutout
+        // finger graps cutout
         translate([-2,
             (pBatteryWidth+pCaseThickness)/2,
             pBatteryLength+pCaseThickness])
         rotate(a=[0,90,0])
         cylinder(15,10,10);
-        */
+        // end finger graps cutout
     }
     //TODO: if shouldAddTabs
     translate([0, -4, 0])
