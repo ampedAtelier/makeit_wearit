@@ -1,22 +1,50 @@
 /**
+ * file: lipoSleeve.scad 
+ * Make It, Wear It
+ * Chapter 8: Programmable Sewn Circuit Cuff
+ *
  * LiPo Battery Cases
+ * Optional battery holder 3D model
+ * Output named: lipo_sleeve.stl
+ *
+ * Printer Settings:
+ * Rafts: No
+ * Supports: No
+ * Resolution: 0.06
+ * Infill: 10%
+ * 
  * TODO:
- * [ ] add book description
- * [ ] add minimal size conditionals for bottom slot and grasp cutout
+ * [ ] add minimal size conditionals for bottom slot
  *      [ ] slot should also have a max thickness
  * [ ] add customizer: 
  *      Lesson 4: https://www.thingiverse.com/thing:1201466
  * [ ] add sewing tabs: 
  *      https://i.materialise.com/blog/openscad-tutorial/
- * [ ] add to amped atelier github
  */
+ 
+// The % operator makes the object transparent for debugging
+// The '#' operator highlights the object
 
 // Parametric Variables
-// values are in mm that will be the default unit for printing
+/* values are in mm that will be the default unit for printing
+pBatteryLength = 25;
+pBatteryWidth = 21;
+pBatteryThickness = 5;
+*/
+// Cable Taped Battery
+pBatteryLength = 52;
+pBatteryWidth = 36;
+pBatteryThickness = 9;
+
+/* Larger Battery
 pBatteryLength = 61;
 pBatteryWidth = 38;
 pBatteryThickness = 9;
+*/
 pCaseThickness = 1.6;
+pCutOutRadius = 10;
+
+pShouldAddTabs = true;
 
 //Rounded Rectangle Module
 module round_rectangle(l,w,t) {
@@ -40,10 +68,18 @@ module sewTab() {
         // sewing holes
         rotate(a=[0,90,0]) {
             translate([-3,2,-1])
-            cylinder(pCaseThickness+2,1,1);
+            cylinder(pCaseThickness+2,1,1,$fn=20);
             translate([-6,2,-1])
-            cylinder(pCaseThickness+2,1,1);
+            cylinder(pCaseThickness+2,1,1,$fn=20);
         }
+    }
+}
+
+module sewRing() {
+    difference() {
+        cylinder(pCaseThickness, 4.0, 4.0, $fn=20);
+        translate([0, 0, -1])
+        cylinder(4.0, 2.0, 2.0, $fn=20);
     }
 }
 
@@ -51,7 +87,7 @@ module sewTab() {
 union() {
     // Hollow Case Module
     difference() {
-        // case
+        // battery case
         round_rectangle(pBatteryLength+pCaseThickness,
             pBatteryWidth+pCaseThickness+pCaseThickness,
             pBatteryThickness+pCaseThickness+pCaseThickness);
@@ -60,25 +96,27 @@ union() {
         round_rectangle(pBatteryLength+1,pBatteryWidth,pBatteryThickness);
         // bottom slot
         translate([pCaseThickness*2,pCaseThickness*2,-pCaseThickness])
-        round_rectangle(pCaseThickness*3,
+        #round_rectangle(pCaseThickness*3,
             pBatteryWidth-pCaseThickness-pCaseThickness,
             pBatteryThickness-pCaseThickness-pCaseThickness);
-        // finger graps cutout
-        translate([-2,
-            (pBatteryWidth+pCaseThickness)/2,
-            pBatteryLength+pCaseThickness])
-        rotate(a=[0,90,0])
-        cylinder(15,10,10);
-        // end finger graps cutout
+        // finger grasp cutout parametric conditional 
+        if (pCutOutRadius+pCutOutRadius+pCaseThickness < pBatteryWidth) {
+            translate([-1,
+                (pBatteryWidth+pCaseThickness+pCaseThickness)/2,
+                pBatteryLength+pCaseThickness])
+            rotate(a=[0,90,0])
+            cylinder(pBatteryThickness+pCaseThickness+pCaseThickness+2,
+            pCutOutRadius,
+            pCutOutRadius);
+        }        
     }
-    //TODO: if shouldAddTabs
-    translate([0, -4, 0])
-    sewTab();
-    mirror([0,1,0])
-    translate([0, -pBatteryWidth-pCaseThickness-pCaseThickness-4, 0])
-    sewTab();
-    //TODO: mirror twice more
+    if (pShouldAddTabs == true) {
+        rotate([0,90,0]) {
+            translate([-4, 0, 0])
+            sewRing();
+            translate([-4, pBatteryWidth+pCaseThickness+pCaseThickness, 0])
+            sewRing();
+            // add a third on at the top
+        }
+    }
 }
-
-// The % operator makes the object transparent for debugging
-// The '#' operator highlights the object
