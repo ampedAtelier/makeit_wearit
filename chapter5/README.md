@@ -1,6 +1,6 @@
 # Chapter 5: Festival Fun Pack
-Downloads for chapter 5 of the book Make It, Wear It by Sahrye Cohen and Hal Rodriguez.
-* Hip Pack Pattern: hipPackPattern.svg
-* Circuit Playground cover 3D OpenSCAD model:  cpxCover.scad used to generate cpxCover.stl
+Source and design files for chapter 5 downloads. Downloads available on the [Make It, Wear It book website](https://www.makeitwearitbook.com/#/hippack/).
+* Hip Pack Pattern.pdf — Hip Pack Pattern
+* cpxCover.scad — Circuit Playground cover 3D OpenSCAD model used to generate cpxCover.stl
 * MakeCode program: cpxFestival.js saved cpxFestival.uf2
 
