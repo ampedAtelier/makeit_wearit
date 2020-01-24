@@ -1,6 +1,6 @@
 # Chapter 7: Starlight Skirt
 
-Downloads from the book *Make It, Wear It* by Sahrye Cohen and Hal Rodriguez
+Source and design files for chapter 7 downloads. Downloads available from the [*Make It, Wear It* book website](https://www.makeitwearitbook.com/#/starlight/).
 
-* starDiffuser.stl — export from [TinkerCad remix](https://www.tinkercad.com/things/3OvMpeDGzx1) of StitchKit [FiberSteppedDiffuser](https://github.com/stitchkit/3d-models/blob/master/Diffusers/Button/FiberSteppedDiffuser.STL) model 
 * starlightSkirt — Arduino Sketch
+* starDiffuser.stl — export from [TinkerCad remix](https://www.tinkercad.com/things/3OvMpeDGzx1) of StitchKit [FiberSteppedDiffuser](https://github.com/stitchkit/3d-models/blob/master/Diffusers/Button/FiberSteppedDiffuser.STL) model 
