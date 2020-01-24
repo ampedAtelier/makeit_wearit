@@ -4,16 +4,16 @@
 # Components:
 # * Adafruit Gemma M0 (product ID: 3501)
 # * Flora NeoPixels v2 (product ID: 1260)
-# The program's two animation that can be toggled 
+# The program's two animation that can be toggled
 # by touching the A1 pad on the Gemma.
 #
-# CircuitPython looks for a code file on the board to run. 
-# There are four options: code.txt, code.py, main.txt and main.py. 
-# CircuitPython looks for those files, in that order, 
+# CircuitPython looks for a code file on the board to run.
+# There are four options: code.txt, code.py, main.txt and main.py.
+# CircuitPython looks for those files, in that order,
 # and then runs the first one it finds.
 #
 # Status Light:
-# Green: a code file is running 
+# Green: a code file is running
 # White: REPL is running, press Ctrl+D to reload code file
 # see https://learn.adafruit.com/adafruit-gemma-m0/troubleshooting
 
@@ -24,8 +24,10 @@ import random
 import time
 import touchio
 
+from adafruit_debouncer import Debouncer
+
 # Set Up
-# Built in red LED 
+# Built in red LED
 led = digitalio.DigitalInOut(board.D13)
 led.direction = digitalio.Direction.OUTPUT
 
@@ -34,8 +36,15 @@ led.direction = digitalio.Direction.OUTPUT
 pixels = neopixel.NeoPixel(board.D1, 4, brightness=0.1)
 
 # Capacitive touch on A1
-# https://learn.adafruit.com/adafruit-gemma-m0/circuitpython-cap-touch
-touch1 = touchio.TouchIn(board.A1)
+# https://learn.adafruit.com/adafruit-gemma-m0/circuitpython-cap-touch-2
+touch = touchio.TouchIn(board.A1)
+
+# Touch Debouncing
+# https://learn.adafruit.com/debouncer-library-python-circuitpython-buttons-sensors/overview
+def touch_value():
+    return touch.value
+
+touchSignal = Debouncer(touch_value)
 
 # Here is where you can put in your favorite colors that will appear!
 # RGB format
@@ -98,15 +107,17 @@ iColor = 0
 
 while True:
     # use pad A1 as capacitive touch to toggle display modes
-    if touch1.value:
-        print("A1 touched!")
+    touchSignal.update()
+    if touchSignal.rose:
+        print("Touched!")
         led.value = not led.value
         # toggle displayMode
         shouldTwinkle = not shouldTwinkle
-        time.sleep(0.25)
+        # time.sleep(0.25)
         pixels.fill((0, 0, 0))
+
     # lightshow
-    if (shouldTwinkle is True): 
+    if (shouldTwinkle is True):
         flashRandom(0.02)
     else:
         iColor = (iColor+1) % 256		# run from 0 to 255
