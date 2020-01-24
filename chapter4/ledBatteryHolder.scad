@@ -7,6 +7,9 @@
  * Infill: 10%
  * Supports: No
  * Build Plate Adhession: Brim
+ *
+ * To Do:
+ * [ ] Rotate 180° so it prints battery side up
  */
  
 // Parametric Variables
@@ -15,7 +18,10 @@
 innerDiameter = 3.25;
 // LED = 8.2 mm tall, fiber optic bundle = 12.5
 tubeLength = 21;
- 
+
+// The % operator makes the object transparent for debugging
+// The '#' operator highlights the object
+
 // module for circumscribed holes
 module cylinder_outer(height,radius,fn) {
    fudge = 1/cos(180/fn);
