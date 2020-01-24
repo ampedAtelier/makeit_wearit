@@ -5,6 +5,6 @@ Source and design files for chapter 8 downloads. Downloads available on the [Mak
 * code.py — requires debounce and neopixel libraries installed in the lib directory
 * heart_cuff.ai — saved as PDF & SVG files for download
 * lipoSleeve.scad — generates STL file provided for download
-** Generated STL available on Thingiverse as [Small Lipo Battery Sleeve](https://www.thingiverse.com/thing:2823508)
-** Also available on Youmagine
-** Also available on Shapeways
+	* Generated STL available on Thingiverse as [Small Lipo Battery Sleeve](https://www.thingiverse.com/thing:2823508)
+	* Also available on Youmagine
+	* Also available on Shapeways
