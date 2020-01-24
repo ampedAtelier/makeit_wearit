@@ -1,10 +1,10 @@
-MAKE IT, WEAR IT
+# Chapter 8: Programmable Sewn Circuit Cuff
 
-Downloads for **Chapter 8: Programmable Sewn Circuit Cuff** of the book *Make It, Wear It* by Sahrye Cohen and Hal Rodriguez
+Source and design files for chapter 8 downloads. Downloads available on the [Make It, Wear It book website](https://www.makeitwearitbook.com/#/cuff/).
 
-* code.py
-* heart_cuff.ai (PDF & SVG files provided for download)
-* lipoSleeve.scad (STL file provided for download)
-** Available on Thingiverse as [Small Lipo Battery Sleeve](https://www.thingiverse.com/thing:2823508)
-** Available on Youmagine
-** Available on Shapeways
+* code.py — requires debounce and neopixel libraries installed in the lib directory
+* heart_cuff.ai — saved as PDF & SVG files for download
+* lipoSleeve.scad — generates STL file provided for download
+** Generated STL available on Thingiverse as [Small Lipo Battery Sleeve](https://www.thingiverse.com/thing:2823508)
+** Also available on Youmagine
+** Also available on Shapeways
