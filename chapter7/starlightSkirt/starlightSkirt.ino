@@ -10,11 +10,12 @@
  #include <Adafruit_NeoPixel.h>
 
 // The pin that JST-SM connector is connected to
+//#define NEOPIXEL_PIN 5
 #define NEOPIXEL_PIN 6
 
 // The number of NeoPixels on the strand
-//#define NUM_PIXELS 10 // Purple Skirt
-#define NUM_PIXELS 7 // Silver Skirt
+#define NUM_PIXELS 10 // Half Sized & Purple Skirt
+//#define NUM_PIXELS 7 // Silver Skirt
 
 
 // Parameter 1 = number of pixels in strip
